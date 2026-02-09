@@ -1,162 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merry Christmas Clarissa 🎄</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine’s Aine 💘</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
 
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 1.5s ease-out forwards; }
 
-        .fade-in {
-            animation: fadeIn 1.5s ease-out forwards;
-        }
+    @keyframes heartBeat {
+     2); }
+      100% { transform: scale(1); }
+    }
+    .heart-beat { animation: heartBeat 0.8s infinite; }
 
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
+    @keyframes glow {
+      0% { box-shadow: 0 0 0px rgba(244, 63, 94, 0.0); }
+      50% { box-shadow: 0 0 25px rgba(244, 63, 94, 0.45); }
+      100% { box-shadow: 0 0 0px rgba(244, 63, 94, 0.0); }
+    }
+    .glow { animation: glow 1.6s ease-in-out infinite; }
+  </style>
 
-        .heart-beat {
-            animation: heartBeat 0.8s infinite;
-        }
-    </style>
+  <script>
+    function isMobileDevice() {
+      return (typeof window.orientation !== "undefined") ||
+             (navigator.userAgent.indexOf("IEMobile") !== -1);
+    }
 
-    <script>
-        function isMobileDevice() {
-            return (typeof window.orientation !== "undefined") ||
-                   (navigator.userAgent.indexOf('IEMobile') !== -1);
-        }
+    window.onload = function () {
+      if (isMobileDevice()) {
+        document.getElementById("invitation-content").style.display = "none";
+        document.getElementById("mobile-warning").style.display = "block";
+      } else {
+        document.getElementById("invitation-content").style.display = "block";
+        document.getElementById("mobile-warning").style.display = "none";
+      }
+    };
 
-        window.onload = function () {
-            if (isMobileDevice()) {
-                document.getElementById('invitation-content').style.display = 'none';
-                document.getElementById('mobile-warning').style.display = 'block';
-            } else {
-                document.getElementById('invitation-content').style.display = 'block';
-                document.getElementById('mobile-warning').style.display = 'none';
-            }
-        }
+    function moveNoButton() {
+      const noButton = document.getElementById("no-btn");
+      const x = (Math.random() * 220) - 110;
+      const y = (Math.random() * 220) - 110;
+      noButton.style.transform = `translate(${x}px, ${y}px)`;
+    }
 
-        function moveNoButton() {
-            const noButton = document.getElementById("no-btn");
-            const x = (Math.random() * 200) - 100;
-            const y = (Math.random() * 200) - 100;
-            noButton.style.transform = `translate(${x}px, ${y}px)`;
-        }
+    function celebrateYes() {
+      document.getElementById("main-content").innerHTML = `
+        <h1 class="text-4xl font-bold text-rose-600 mb-4">
+          Happy Valentine’s Day! 💘✨
+        </h1>
+        <p class="text-gray-700 text-lg mb-6">
+          You just made my day extra special ❤️
+          <span class="heart-beat inline-block">💕</span>
+        </p>
+        <p class="text-gray-600">
+          Can’t wait for our date 🌹🍫
+        </p>
+      `;
 
-        function celebrateYes() {
-            document.getElementById('main-content').innerHTML = `
-                <h1 class="text-4xl font-bold text-green-600 mb-4">
-                    Merry Christmas! 🎄🎉
-                </h1>
-                <p class="text-gray-700 text-lg mb-6">
-                    You just made my Christmas extra special ❤️
-                    <span class="heart-beat inline-block">💚</span>
-                </p>
-            `;
+      const duration = 8 * 1000;
+      const animationEnd = Date.now() + duration;
 
-            const duration = 8 * 1000;
-            const animationEnd = Date.now() + duration;
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+      confetti({
+        particleCount: 220,
+        spread: 110,
+        origin: { y: 0.6 },
+        colors: ["#fb7185", "#f43f5e", "#ffffff", "#fecdd3"],
+        shapes: ["circle", "square"],
+        gravity: 1.05,
+      });
 
-            // Initial festive burst
-            confetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#dc2626', '#16a34a', '#ffffff'],
-                shapes: ['circle', 'square'],
-                gravity: 1.1
-            });
+      (function frame() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return;
 
-            (function frame() {
-                const timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return;
+        confetti({
+          particleCount: 6,
+          angle: 90,
+          spread: 360,
+          origin: { x: Math.random(), y: -0.1 },
+          colors: ["#fb7185", "#f43f5e", "#ffffff", "#fecdd3"],
+          gravity: randomInRange(0.35, 0.65),
+          scalar: randomInRange(0.5, 0.9),
+          ticks: 320,
+        });
 
-                // Snow effect ❄️
-                confetti({
-                    particleCount: 5,
-                    angle: 90,
-                    spread: 360,
-                    origin: { x: Math.random(), y: -0.1 },
-                    colors: ['#ffffff'],
-                    shapes: ['circle'],
-                    gravity: randomInRange(0.3, 0.6),
-                    scalar: randomInRange(0.4, 0.8),
-                    ticks: 300
-                });
+        confetti({
+          particleCount: 4,
+          angle: 60,
+          spread: 65,
+          origin: { x: 0, y: 0.65 },
+          colors: ["#fb7185", "#f43f5e", "#ffffff"],
+        });
 
-                // Side bursts
-                confetti({
-                    particleCount: 3,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.6 },
-                    colors: ['#dc2626', '#16a34a', '#ffffff']
-                });
+        confetti({
+          particleCount: 4,
+          angle: 120,
+          spread: 65,
+          origin: { x: 1, y: 0.65 },
+          colors: ["#fb7185", "#f43f5e", "#ffffff"],
+        });
 
-                confetti({
-                    particleCount: 3,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.6 },
-                    colors: ['#dc2626', '#16a34a', '#ffffff']
-                });
-
-                requestAnimationFrame(frame);
-            })();
-        }
-    </script>
+        requestAnimationFrame(frame);
+      })();
+    }
+  </script>
 </head>
 
-<body class="bg-gradient-to-r from-green-700 to-red-700 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gradient-to-r from-pink-600 via-rose-600 to-red-700 flex items-center justify-center min-h-screen p-4">
 
-    <!-- Mobile Warning -->
-    <div id="mobile-warning"
-        class="bg-white shadow-lg rounded-lg p-6 max-w-md w-full text-center fade-in"
-        style="display: none;">
-        <p class="text-gray-700">
-            Please open this on a computer for the full Christmas magic 🎄✨
-        </p>
+  <!-- Mobile Warning -->
+  <div id="mobile-warning"
+       class="bg-white shadow-lg rounded-lg p-6 max-w-md w-full text-center fade-in"
+       style="display: none;">
+    <p class="text-gray-700">
+      Please open this on a computer for the full Valentine magic 💘✨
+    </p>
+  </div>
+
+  <!-- Main Content -->
+  <div id="invitation-content"
+       class="bg-white shadow-xl rounded-lg p-8 max-w-md w-full text-center fade-in glow">
+
+    <div id="main-content">
+      <h1 class="text-4xl font-bold text-rose-600 mb-4">
+        Hey Aine 💝
+      </h1>
+
+      <p class="text-gray-700 text-lg mb-6">
+        Would you like to go out with me on February 14? 🌹✨
+      </p>
+
+      <div class="flex justify-center space-x-4">
+        <button onclick="celebrateYes()"
+                class="bg-rose-600 text-white px-6 py-2 rounded-lg hover:bg-rose-700 transition">
+          Yes 💌
+        </button>
+
+        <button id="no-btn"
+                onmouseover="moveNoButton()"
+                class="bg-gray-500 text-white px-6 py-2 rounded-lg transition">
+          No 🙈
+        </button>
+      </div>
+
+      <p class="text-xs text-gray-400 mt-6">
+        P.S. The “No” button is a little shy 😅
+      </p>
     </div>
-
-    <!-- Main Content -->
-    <div id="invitation-content"
-        class="bg-white shadow-xl rounded-lg p-8 max-w-md w-full text-center fade-in">
-
-        <div id="main-content">
-            <h1 class="text-4xl font-bold text-red-600 mb-4">
-                Hey Clarissa 🎅❤️
-            </h1>
-
-            <p class="text-gray-700 text-lg mb-6">
-                Would you like to go out with me this Christmas? 🎄✨
-            </p>
-
-            <div class="flex justify-center space-x-4">
-                <button onclick="celebrateYes()"
-                    class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
-                    Yes 🎁
-                </button>
-
-                <button id="no-btn"
-                    onmouseover="moveNoButton()"
-                    class="bg-red-500 text-white px-6 py-2 rounded-lg transition">
-                    No ❄️
-                </button>
-            </div>
-        </div>
-    </div>
+  </div>
 </body>
 </html>
